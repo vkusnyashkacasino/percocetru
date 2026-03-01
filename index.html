@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>percocet</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      background-image: url('assets/back.png'); /* <- путь к твоей картинке */
+      background-size: cover;       /* масштабирует картинку, чтобы покрывала весь экран */
+      background-position: center;  /* центрирование картинки */
+      background-repeat: no-repeat; /* без повторов */
+      background-attachment: fixed; /* фон не прокручивается с контентом */
+    } 
+     @media (max-width: 768px) {
+    body {
+      background-image: url('assets/mback');
+    }
+  }
+  </style>
+</head>
+<a href="https://t.me/unitedstatespolo" target="_blank">
+  <img src="assets/telegram.png" class="moving-button" alt="Кнопка" style="position:absolute; width:150px; cursor:pointer; transition: transform 0.2s;">
+</a>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+
+<script>
+  const button = document.querySelector('.moving-button');
+  let posX = Math.random() * (window.innerWidth - button.offsetWidth);
+  let posY = Math.random() * (window.innerHeight - button.offsetHeight);
+  let speedX = 1.7 + Math.random() * 3;
+  let speedY = 1.7 + Math.random() * 3;
+
+  button.style.left = posX + 'px';
+  button.style.top = posY + 'px';
+
+  function moveButton() {
+    posX += speedX;
+    posY += speedY;
+
+    if (posX <= 0 || posX + button.offsetWidth >= window.innerWidth) speedX = -speedX;
+    if (posY <= 0 || posY + button.offsetHeight >= window.innerHeight) speedY = -speedY;
+
+    button.style.left = posX + 'px';
+    button.style.top = posY + 'px';
+
+    requestAnimationFrame(moveButton);
+  }
+
+  moveButton();
+
+  window.addEventListener('resize', () => {
+    if (posX + button.offsetWidth > window.innerWidth) posX = window.innerWidth - button.offsetWidth;
+    if (posY + button.offsetHeight > window.innerHeight) posY = window.innerHeight - button.offsetHeight;
+  });
+
+  // Hover эффект (увеличение)
+  button.addEventListener('mouseenter', () => button.style.transform = 'scale(3)');
+  button.addEventListener('mouseleave', () => button.style.transform = 'scale(1)');
+</script>
+
+<script>
+  // Версия сайта, меняешь только здесь
+  const siteVersion = "1.0";
+
+  // Обновляем все <link rel="stylesheet">
+  document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+    link.href = link.href.split('?')[0] + '?v=' + siteVersion;
+  });
+
+  // Обновляем все <script src=...>
+  document.querySelectorAll('script[src]').forEach(script => {
+    script.src = script.src.split('?')[0] + '?v=' + siteVersion;
+  });
+
+  // Обновляем все <img>
+  document.querySelectorAll('img').forEach(img => {
+    img.src = img.src.split('?')[0] + '?v=' + siteVersion;
+  });
+</script>
+
+<body>
+</body>
+</html>
