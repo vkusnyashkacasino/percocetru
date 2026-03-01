@@ -18,11 +18,14 @@
       background-repeat: no-repeat; /* без повторов */
       background-attachment: fixed; /* фон не прокручивается с контентом */
     } 
-     @media (max-width: 768px) {
-    body {
-      background-image: url('assets/mback');
-    }
+  @media (max-width: 768px) {
+  body {
+    background-image: url('assets/mback.png'); /* <- добавил .png */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
+}
   </style>
 </head>
 <a href="https://t.me/unitedstatespolo" target="_blank">
@@ -32,8 +35,8 @@
 
 <script>
   const button = document.querySelector('.moving-button');
-  let posX = Math.random() * (window.innerWidth - button.offsetWidth);
-  let posY = Math.random() * (window.innerHeight - button.offsetHeight);
+  let posX = 50; // слева, px
+  let posY = 50; // сверху, px
   let speedX = 1.7 + Math.random() * 3;
   let speedY = 1.7 + Math.random() * 3;
 
